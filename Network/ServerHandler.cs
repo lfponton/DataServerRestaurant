@@ -46,8 +46,6 @@ namespace DataServerRestaurant.Network
                 try
                 {
                     var requestType = reader.ReadLine();
-                    Console.WriteLine("Received: {0}", requestType);
-
                     await ProcessClientRequestType(requestType);
                 }
                 catch (IOException e)
@@ -90,7 +88,6 @@ namespace DataServerRestaurant.Network
         {
             string requestBody;
             requestBody = reader.ReadLine();
-            Console.WriteLine(requestBody);
             Order order = JsonSerializer.Deserialize<Order>(requestBody, options);
             await persistence.CreateOrder(order);
             string orderJson = JsonSerializer.Serialize(order, options);
